@@ -1446,15 +1446,17 @@ function WebGLRenderer( parameters ) {
 	}
 
 	function initMaterial( material, fog, object ) {
-
+		// ?
 		var materialProperties = properties.get( material );
 
+		// 当前场景的灯光
 		var lights = currentRenderState.state.lights;
 		var shadowsArray = currentRenderState.state.shadowsArray;
 
 		var lightsHash = materialProperties.lightsHash;
 		var lightsStateHash = lights.state.hash;
 
+		// 猜测：根据所有相关对象的参数和优先级，得出最终的一份参数值
 		var parameters = programCache.getParameters(
 			material, lights.state, shadowsArray, fog, _clipping.numPlanes, _clipping.numIntersection, object );
 
@@ -1506,7 +1508,7 @@ function WebGLRenderer( parameters ) {
 		if ( programChange ) {
 
 			if ( parameters.shaderID ) {
-
+				// 从着色器语言库，读取当前 shaderID 对应的着色器代码和 uniform 参数
 				var shader = ShaderLib[ parameters.shaderID ];
 
 				materialProperties.shader = {
@@ -1527,6 +1529,7 @@ function WebGLRenderer( parameters ) {
 
 			}
 
+			// BeforeCompile 的钩子函数
 			material.onBeforeCompile( materialProperties.shader, _this );
 
 			// Computing code again as onBeforeCompile may have changed the shaders
