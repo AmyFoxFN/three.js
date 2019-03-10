@@ -49,13 +49,9 @@
 				var light = new THREE.AmbientLight( 0x404040 ); // soft white light
 				scene.add( light );
 
-				var directionalLight = new THREE.DirectionalLight( 0xffffff, 0.5 );
-				directionalLight.position = new THREE.Vector3( 0, 0, 1 );
-				var targetObject = new THREE.Object3D();
-				targetObject.position = new THREE.Vector3( 0, 0, 100 );
-				scene.add( targetObject );
-
-				directionalLight.target = targetObject;
+				var directionalLight = new THREE.DirectionalLight( 0xffffff, 1 );
+				directionalLight.position.y = 0;
+				directionalLight.position.z = 1;
 				scene.add( directionalLight );
 
 				// renderer
