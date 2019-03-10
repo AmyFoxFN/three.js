@@ -1535,6 +1535,7 @@ function WebGLRenderer( parameters ) {
 			// Computing code again as onBeforeCompile may have changed the shaders
 			code = programCache.getProgramCode( material, parameters );
 
+			// 得到 program
 			program = programCache.acquireProgram( material, materialProperties.shader, parameters, code );
 
 			materialProperties.program = program;
